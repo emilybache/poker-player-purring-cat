@@ -16,10 +16,98 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
+    public static final String STATE = """
+        {
+            "tournament_id":"550d1d68cd7bd10003000003",    \s
+            "game_id":"550da1cb2d909006e90004b1",
+            "round":0,                                     \s
+            "bet_index":0,                                 \s
+            "small_blind": 10,                             \s
+            "current_buy_in": 320,                         \s
+            "pot": 400,                                    \s
+            "minimum_raise": 240,                          \s
+            "dealer": 1,                                   \s
+            "orbits": 7,                                   \s
+            "in_action": 1,                                \s
+            "players": [                                   \s
+                {
+                    "id": 0,                               \s
+                    "name": "Albert",                      \s
+                    "status": "active",                    \s
+                    "version": "Default random player",    \s
+                    "stack": 1010,                         \s
+                    "bet": 320                             \s
+                },
+                {
+                    "id": 1,                               \s
+                    "name": "Bob",
+                    "status": "active",
+                    "version": "Default random player",
+                    "stack": 1590,
+                    "bet": 80,
+                    "hole_cards": [                        \s
+                        {
+                            "rank": "6",                   \s
+                            "suit": "hearts"               \s
+                        },
+                        {
+                            "rank": "K",
+                            "suit": "spades"
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "name": "Chuck",
+                    "status": "out",
+                    "version": "Default random player",
+                    "stack": 0,
+                    "bet": 0
+                }
+            ],
+            "community_cards": [                           \s
+                {
+                    "rank": "4",
+                    "suit": "spades"
+                },
+                {
+                    "rank": "A",
+                    "suit": "hearts"
+                },
+                {
+                    "rank": "6",
+                    "suit": "clubs"
+                }
+            ]
+        }
+        """;
+
+    @Test
+    void parseState() {
+        State state = new MessageParser().stateFrom(STATE);
+        assertThat(state).isNotNull();
+        assertThat(state.tournamentId).isEqualTo("550d1d68cd7bd10003000003");
+    }
+
+    @Test
+    void testParseWhatAreMyCards() throws Exception{
+
+        var result = new MessageParser().cardsFrom(STATE);
+
+        assertEquals(List.of(new Card(Rank.SIX, Suit.HEARTS), new Card(Rank.KING, Suit.HEARTS)), result);
+    }
+
+    @Test
+    void RankFromString() {
+        var result = Rank.fromString("6");
+        assertEquals(Rank.SIX, result);
+    }
+
+
     @ParameterizedTest
-    @ValueSource(strings = {"apple", "banana", "orange"})
-    void testWithStringParameter(String fruit) {
-        assertTrue(fruit.length() > 0);
+    @ValueSource(strings = {"6", "7", "K", "J"})
+    void testRanksFromStringDoesNotBlowUp(String rank) {
+        Rank.fromString(rank);
     }
 
     @MethodSource("exampleParams")

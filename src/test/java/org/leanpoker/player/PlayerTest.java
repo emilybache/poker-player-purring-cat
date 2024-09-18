@@ -5,9 +5,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.leanpoker.player.domain.Card;
-import org.leanpoker.player.domain.Rank;
-import org.leanpoker.player.domain.Suit;
+import org.leanpoker.player.domain.model.Card;
+import org.leanpoker.player.domain.model.Rank;
+import org.leanpoker.player.domain.model.Suit;
 import org.leanpoker.player.presentation.parser.GameState;
 import org.leanpoker.player.presentation.parser.MessageParser;
 

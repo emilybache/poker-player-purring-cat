@@ -1,4 +1,4 @@
-package org.leanpoker.player.domain;
+package org.leanpoker.player.domain.model;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.leanpoker.player.presentation.parser.GameState;

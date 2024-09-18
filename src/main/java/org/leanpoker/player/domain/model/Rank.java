@@ -1,21 +1,21 @@
-package org.leanpoker.player.domain;
+package org.leanpoker.player.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum Rank {
-    TWO(2, "2"),
-    THREE(3, "3"),
-    FOUR(4, "4"),
-    FIVE(5, "5"),
-    SIX(6, "6"),
-    SEVEN(7, "7"),
-    EIGHT(8, "8"),
-    NINE(9, "9"),
-    TEN(10, "10"),
-    JACK(11, "J"),
-    QUEEN(12, "Q"),
-    KING(13, "K"),
-    ACE(14, "A");
+    TWO(1, "2"),
+    THREE(2, "3"),
+    FOUR(2, "4"),
+    FIVE(3, "5"),
+    SIX(3, "6"),
+    SEVEN(4, "7"),
+    EIGHT(4, "8"),
+    NINE(5, "9"),
+    TEN(5, "10"),
+    JACK(6, "J"),
+    QUEEN(7, "Q"),
+    KING(8, "K"),
+    ACE(10, "A");
 
     private final int value;
     private final String jsonName;

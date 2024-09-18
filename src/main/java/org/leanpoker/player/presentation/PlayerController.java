@@ -9,7 +9,7 @@ import io.micronaut.http.annotation.Consumes;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
-import org.leanpoker.player.domain.Player;
+import org.leanpoker.player.domain.model.Player;
 import org.leanpoker.player.presentation.parser.GameState;
 import org.leanpoker.player.presentation.parser.MessageParser;
 

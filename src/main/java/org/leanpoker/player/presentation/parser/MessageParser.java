@@ -1,7 +1,7 @@
 package org.leanpoker.player.presentation.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.leanpoker.player.domain.Card;
+import org.leanpoker.player.domain.model.Card;
 
 import java.util.List;
 

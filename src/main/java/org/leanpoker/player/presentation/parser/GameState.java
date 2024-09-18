@@ -1,9 +1,9 @@
 package org.leanpoker.player.presentation.parser;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.leanpoker.player.domain.Card;
-import org.leanpoker.player.domain.Rank;
-import org.leanpoker.player.domain.Suit;
+import org.leanpoker.player.domain.model.Card;
+import org.leanpoker.player.domain.model.Rank;
+import org.leanpoker.player.domain.model.Suit;
 
 import java.util.List;
 

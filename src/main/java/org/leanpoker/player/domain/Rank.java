@@ -1,4 +1,4 @@
-package org.leanpoker.player;
+package org.leanpoker.player.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

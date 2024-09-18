@@ -1,6 +1,10 @@
-package org.leanpoker.player;
+package org.leanpoker.player.presentation.parser;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.leanpoker.player.domain.Card;
+import org.leanpoker.player.domain.Rank;
+import org.leanpoker.player.domain.Suit;
+
 import java.util.List;
 
 public class GameState {

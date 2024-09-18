@@ -1,10 +1,11 @@
-package org.leanpoker.player;
+package org.leanpoker.player.domain;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.leanpoker.player.presentation.parser.GameState;
 
 public class Player {
 
-    static final String VERSION = "v.1.1";
+    public static final String VERSION = "v.1.1";
 
     public static int betRequest(GameState state) {
         var cards = state.getCards();

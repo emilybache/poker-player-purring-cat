@@ -1,4 +1,4 @@
-package org.leanpoker.player;
+package org.leanpoker.player.presentation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,6 +9,10 @@ import io.micronaut.http.annotation.Consumes;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
+import org.leanpoker.player.domain.Player;
+import org.leanpoker.player.presentation.parser.GameState;
+import org.leanpoker.player.presentation.parser.MessageParser;
+
 import java.util.Map;
 
 @Controller()

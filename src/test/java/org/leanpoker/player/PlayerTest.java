@@ -84,7 +84,7 @@ class PlayerTest {
 
     @Test
     void parseState() {
-        State state = new MessageParser().stateFrom(STATE);
+        GameState state = new MessageParser().stateFrom(STATE);
         assertThat(state).isNotNull();
         assertThat(state.getTournamentId()).isEqualTo("550d1d68cd7bd10003000003");
     }
@@ -94,7 +94,7 @@ class PlayerTest {
 
         var result = new MessageParser().cardsFrom(STATE);
 
-        assertEquals(List.of(new Card(Rank.SIX, Suit.HEARTS), new Card(Rank.KING, Suit.HEARTS)), result);
+        assertEquals(List.of(new Card(Rank.SIX, Suit.HEARTS), new Card(Rank.KING, Suit.SPADES)), result);
     }
 
     @Test

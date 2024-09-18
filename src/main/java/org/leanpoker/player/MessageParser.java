@@ -9,19 +9,19 @@ import java.util.List;
 
 public class MessageParser {
     public List<Card> cardsFrom(String json) throws Exception {
-        State result = stateFrom(json);
-        var index = result.in_action;
-        var player = result.players.get(index);
-        var cards = player.cards;
-        return cards.stream().map(cardData -> new Card(Rank.fromString(cardData.rank), Suit.HEARTS)).toList();
+        var result = stateFrom(json);
+        var index = result.getInAction();
+        var player = result.getPlayers().get(index);
+        var cards = player.getCards();
+        return cards.stream().map(cardData -> new Card(Rank.fromString(cardData.rank), Suit.fromString(cardData.suit))).toList();
 
 
     }
 
-    public State stateFrom(String stateString) {
+    public GameState stateFrom(String stateString) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(stateString, State.class);
+            return objectMapper.readValue(stateString, GameState.class);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

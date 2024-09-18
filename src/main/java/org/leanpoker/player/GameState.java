@@ -38,7 +38,7 @@ public class GameState {
     private int in_action;
 
     @JsonProperty("players")
-    private List<Player> players;
+    private List<PlayerData> players;
 
     @JsonProperty("community_cards")
     private List<Card> community_cards;
@@ -132,11 +132,11 @@ public class GameState {
         this.in_action = in_action;
     }
 
-    public List<Player> getPlayers() {
+    public List<PlayerData> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<Player> players) {
+    public void setPlayers(List<PlayerData> players) {
         this.players = players;
     }
 

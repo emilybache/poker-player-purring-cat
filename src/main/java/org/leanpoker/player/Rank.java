@@ -1,5 +1,7 @@
 package org.leanpoker.player;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public enum Rank {
     TWO(2, "2"),
     THREE(3, "3"),
@@ -23,6 +25,7 @@ public enum Rank {
         this.jsonName = jsonName;
     }
 
+    @JsonCreator
     public static Rank fromString(String name) {
         for (Rank rank : Rank.values()) {
             if (rank.jsonName.equalsIgnoreCase(name)) {

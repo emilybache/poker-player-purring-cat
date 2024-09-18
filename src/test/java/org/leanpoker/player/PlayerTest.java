@@ -86,7 +86,7 @@ class PlayerTest {
     void parseState() {
         State state = new MessageParser().stateFrom(STATE);
         assertThat(state).isNotNull();
-        assertThat(state.tournamentId).isEqualTo("550d1d68cd7bd10003000003");
+        assertThat(state.getTournamentId()).isEqualTo("550d1d68cd7bd10003000003");
     }
 
     @Test

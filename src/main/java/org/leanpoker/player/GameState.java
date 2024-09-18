@@ -1,9 +1,6 @@
 package org.leanpoker.player;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.leanpoker.player.Card;
-import org.leanpoker.player.Player;
-
 import java.util.List;
 
 public class GameState {

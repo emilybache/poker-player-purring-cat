@@ -1,6 +1,8 @@
 package org.leanpoker.player.domain.model;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.leanpoker.player.domain.BiddingStrategy;
+import org.leanpoker.player.domain.CardScorer;
 import org.leanpoker.player.presentation.parser.GameState;
 
 public class Player {
@@ -9,7 +11,10 @@ public class Player {
 
     public static int betRequest(GameState state) {
         var cards = state.getCards();
-        return 0;
+        var highest = new CardScorer().highest(cards);
+
+        BiddingStrategy strategy = new BiddingStrategy();
+        return strategy.bidForHighestCard(highest);
     }
 
     public static void showdown(JsonNode game) {

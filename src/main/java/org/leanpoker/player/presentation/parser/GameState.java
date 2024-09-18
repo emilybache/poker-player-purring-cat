@@ -1,5 +1,6 @@
 package org.leanpoker.player.presentation.parser;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.leanpoker.player.domain.model.Card;
 import org.leanpoker.player.domain.model.Rank;
@@ -7,6 +8,7 @@ import org.leanpoker.player.domain.model.Suit;
 
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GameState {
     @JsonProperty("tournament_id")
     private String tournament_id;

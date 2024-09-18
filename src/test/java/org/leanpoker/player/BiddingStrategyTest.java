@@ -13,8 +13,15 @@ public class BiddingStrategyTest {
     @Test
     public void bidOnTenOrMore() {
         var hightestCard = new Card(Rank.ACE, Suit.SPADES);
-        var bid = new BiddingStrategy().bidForHighestCard(hightestCard);
+        var bid = new BiddingStrategy(5).bidForHighestCard(hightestCard);
         var amount = 10;
         assertEquals(amount, bid);
+    }
+
+    @Test
+    public void useBuyInIfPresent() {
+        var hightestCard = new Card(Rank.ACE, Suit.SPADES);
+        var bid = new BiddingStrategy(20).bidForHighestCard(hightestCard);
+        assertEquals(20, bid);
     }
 }

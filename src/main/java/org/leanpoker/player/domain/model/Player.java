@@ -13,7 +13,7 @@ public class Player {
         var cards = state.getCards();
         var highest = new CardScorer().highest(cards);
 
-        BiddingStrategy strategy = new BiddingStrategy();
+        BiddingStrategy strategy = new BiddingStrategy(state.getCurrentBuyIn());
         return strategy.bidForHighestCard(highest);
     }
 

@@ -147,4 +147,11 @@ public class GameState {
     public void setCommunityCards(List<Card> community_cards) {
         this.community_cards = community_cards;
     }
+
+    public List<Card> getCards() {
+        var index = getInAction();
+        var player = getPlayers().get(index);
+        var cards = player.getCards();
+        return cards.stream().map(cardData -> new Card(Rank.fromString(cardData.rank), Suit.fromString(cardData.suit))).toList();
+    }
 }

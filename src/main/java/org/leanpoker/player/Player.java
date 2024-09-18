@@ -6,7 +6,8 @@ public class Player {
 
     static final String VERSION = "v.1.1";
 
-    public static int betRequest(JsonNode request) {
+    public static int betRequest(GameState state) {
+        var cards = state.getCards();
         return 0;
     }
 

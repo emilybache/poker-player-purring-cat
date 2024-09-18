@@ -29,7 +29,8 @@ public class PlayerController {
         System.out.println("action: " + action);
         System.out.println("gameState: " + gameState);
         if ("bet_request".equals(action)) {
-            return String.valueOf(Player.betRequest(mapper.readTree(gameState)));
+            GameState state = new MessageParser().stateFrom(gameState);
+            return String.valueOf(Player.betRequest(state));
         }
         if ("showdown".equals(action)) {
             Player.showdown(mapper.readTree(gameState));

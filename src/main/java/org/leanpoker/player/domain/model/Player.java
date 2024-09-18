@@ -11,7 +11,8 @@ public class Player {
 
     public static int betRequest(GameState state) {
         var cards = state.getCards();
-        var highest = new CardScorer().highest(cards);
+        var scorer = new CardScorer();
+        var highest = scorer.highest(cards);
 
         BiddingStrategy strategy = new BiddingStrategy(state.getCurrentBuyIn());
         return strategy.bidForHighestCard(highest);

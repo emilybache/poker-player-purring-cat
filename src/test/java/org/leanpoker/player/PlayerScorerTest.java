@@ -47,4 +47,12 @@ public class PlayerScorerTest {
         var highest = new CardScorer().highest(cards);
         assertEquals(new Card(Rank.KING, Suit.SPADES), highest);
     }
+
+    @Test
+    public void pair(){
+        var cards = List.of(new Card(Rank.SIX, Suit.HEARTS), new Card(Rank.SIX, Suit.SPADES));
+        var pairScore = new CardScorer().pair(cards);
+
+        assertEquals(6, pairScore);
+    }
 }

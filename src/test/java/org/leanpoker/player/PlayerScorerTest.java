@@ -1,6 +1,5 @@
 package org.leanpoker.player;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerScorerTest {
 
@@ -163,4 +162,45 @@ public class PlayerScorerTest {
         assertThat(score).isEqualTo(-9);
     }
 
+    @Test
+    public void lookForCommunityPairForCard(){
+        var ourCards = List.of(
+            new Card(Rank.JACK, Suit.SPADES),
+            new Card(Rank.TEN, Suit.HEARTS));
+        var communityCards = List.of(
+            new Card(Rank.JACK, Suit.HEARTS),
+            new Card(Rank.TWO, Suit.SPADES),
+            new Card(Rank.FIVE, Suit.SPADES)
+        );
+        boolean hasPair = new CardScorer().findPairFor(ourCards.get(0), communityCards);
+        assertTrue(hasPair);
+    }
+
+    @Test
+    public void lookForCommunityPairForNonMatchingCard(){
+        var ourCards = List.of(
+            new Card(Rank.FOUR, Suit.SPADES),
+            new Card(Rank.TEN, Suit.HEARTS));
+        var communityCards = List.of(
+            new Card(Rank.JACK, Suit.HEARTS),
+            new Card(Rank.TWO, Suit.SPADES),
+            new Card(Rank.FIVE, Suit.SPADES)
+        );
+        boolean hasPair = new CardScorer().findPairFor(ourCards.get(1), communityCards);
+        assertFalse(hasPair);
+    }
+
+    @Test
+    public void lookForPairForBothCards(){
+        var ourCards = List.of(
+            new Card(Rank.FOUR, Suit.SPADES),
+            new Card(Rank.TEN, Suit.HEARTS));
+        var communityCards = List.of(
+            new Card(Rank.FOUR, Suit.HEARTS),
+            new Card(Rank.TEN, Suit.SPADES),
+            new Card(Rank.FIVE, Suit.SPADES)
+        );
+        int pairs = new CardScorer().countPairs(ourCards, communityCards);
+        assertThat(pairs).isEqualTo(2);
+    }
 }

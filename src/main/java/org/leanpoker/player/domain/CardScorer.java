@@ -66,6 +66,23 @@ public class CardScorer {
         return result;
     }
 
+    public boolean findPairFor(Card card, List<Card> communityCards) {
+        Map<Rank, Long> numberOfCardsByRank = communityCards.stream()
+            .collect(Collectors.groupingBy(Card::rank, Collectors.counting()));
+
+        return numberOfCardsByRank.containsKey(card.rank());
+    }
+
+    public int countPairs(List<Card> ourCards, List<Card> communityCards) {
+        int pairCount = 0;
+        for (Card card : ourCards) {
+            if (findPairFor(card, communityCards)) {
+                pairCount++;
+            }
+        }
+        return pairCount;
+    }
+
     public int suitedBonus(List<Card> cards) {
         Map<Suit, Long> numberOfCardsBySuit = cards.stream()
                 .collect(Collectors.groupingBy(Card::suit, Collectors.counting()));

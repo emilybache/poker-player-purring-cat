@@ -6,6 +6,8 @@ import org.leanpoker.player.domain.model.Rank;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CardScorer {
     public int scoreFor(Card card) {
@@ -19,21 +21,17 @@ public class CardScorer {
     }
 
     public int pair(List<Card> cards) {
-        var mutable = new ArrayList<>(cards);
-        var frequencies =new HashMap<Rank, Integer>();
-        for(var card:cards) {
-            if (frequencies.containsKey(card.rank())) {
-                int existing =frequencies.get(card.rank());
-                frequencies.put(card.rank(), existing +1);
-            }
-            else {
-                frequencies.put(card.rank(), 1);
-            }
-        }
-        if (frequencies.containsValue((2))) {
-            return cards.get(0).rank().getValue() + cards.get(1).rank().getValue();
-        }
+        Map<Rank, Long> numberOfCardsByRank = cards.stream()
+            .collect(Collectors.groupingBy(Card::rank, Collectors.counting()));
 
-        return 0;
+        Map<Rank, Integer> sumOfValueByRank = cards.stream()
+            .collect(Collectors.groupingBy(Card::rank, Collectors.summingInt(card -> card.rank().getValue())));
+
+        List<Card> cardsByRank = cards.stream().filter(c -> c.rank() == Rank.TWO).toList();
+
+        return cards.stream()
+            .filter(card -> numberOfCardsByRank.get(card.rank()) == 2) // exactly 2 times
+            .mapToInt(card -> card.rank().getValue())
+            .sum(); // Sum the values
     }
 }

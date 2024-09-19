@@ -55,4 +55,12 @@ public class PlayerScorerTest {
 
         assertEquals(6, pairScore);
     }
+
+    @Test
+    public void pairReturnsZeroWhenNoPair(){
+        var cards = List.of(new Card(Rank.SIX, Suit.HEARTS), new Card(Rank.SEVEN, Suit.SPADES));
+        var pairScore = new CardScorer().pair(cards);
+
+        assertEquals(0, pairScore);
+    }
 }

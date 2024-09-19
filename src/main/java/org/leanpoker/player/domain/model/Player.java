@@ -12,10 +12,13 @@ public class Player {
     public static int betRequest(GameState state) {
         var cards = state.getCards();
         var scorer = new CardScorer();
+
+        int pairScore = scorer.pair(cards);
         var highest = scorer.highest(cards);
 
         BiddingStrategy strategy = new BiddingStrategy(state.getCurrentBuyIn());
-        return strategy.bidForHighestCard(highest);
+        int highestScore = strategy.bidForHighestCard(highest);
+        return Math.max(pairScore, highestScore);
     }
 
     public static void showdown(JsonNode game) {

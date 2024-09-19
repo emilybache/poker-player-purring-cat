@@ -15,7 +15,7 @@ public class BiddingStrategy {
 
     public int decideBid(List<Card> cards, int ourMoney) {
         int overallScore = scorer.overallScore(cards);
-        if (overallScore > 12) {
+        if (overallScore >= 12) {
             return ourMoney;
         } if (overallScore > 10) {
             return Math.max(buyIn, 10);

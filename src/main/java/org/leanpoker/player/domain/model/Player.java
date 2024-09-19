@@ -7,7 +7,7 @@ import org.leanpoker.player.presentation.parser.GameState;
 
 public class Player {
 
-    public static final String VERSION = "v.1.7";
+    public static final String VERSION = "v.1.8";
 
     public static int betRequest(GameState state) {
         var cards = state.getCards();

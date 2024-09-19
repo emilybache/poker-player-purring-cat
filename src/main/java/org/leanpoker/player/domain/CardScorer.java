@@ -21,6 +21,11 @@ public class CardScorer {
         return sorted.get(0);
     }
 
+    public int highestScore(List<Card> cards) {
+        var highest = highest(cards);
+        return highest.rank().getValue() >= 10 ? highest.rank().getValue() : 0;
+    }
+
     public int pair(List<Card> cards) {
         Map<Rank, Long> numberOfCardsByRank = cards.stream()
             .collect(Collectors.groupingBy(Card::rank, Collectors.counting()));

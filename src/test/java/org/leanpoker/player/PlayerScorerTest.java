@@ -49,6 +49,20 @@ public class PlayerScorerTest {
     }
 
     @Test
+    public void highestCardScoreWithBadCards() {
+        var cards = List.of(new Card(Rank.SIX, Suit.HEARTS), new Card(Rank.KING, Suit.SPADES));
+        var highestScore = new CardScorer().highestScore(cards);
+        assertEquals(0, highestScore);
+    }
+
+    @Test
+    public void highestCardScoreWithGoodCards() {
+        var cards = List.of(new Card(Rank.ACE, Suit.HEARTS), new Card(Rank.ACE, Suit.SPADES));
+        var highestScore = new CardScorer().highestScore(cards);
+        assertEquals(10, highestScore);
+    }
+
+    @Test
     public void pair(){
         var cards = List.of(new Card(Rank.SIX, Suit.HEARTS), new Card(Rank.SIX, Suit.SPADES));
         var pairScore = new CardScorer().pair(cards);

@@ -79,5 +79,19 @@ public class PlayerScorerTest {
 
         assertEquals(5, pairScore);
     }
+    @Test
+    public void suitedCardsAddTwo(){
+        var cards = List.of(new Card(Rank.THREE, Suit.HEARTS), new Card(Rank.FOUR, Suit.HEARTS));
+        var bonus = new CardScorer().suitedBonus(cards);
+
+        assertEquals(2, bonus);
+    }
+    @Test
+    public void suitedCardsNoBonus(){
+        var cards = List.of(new Card(Rank.THREE, Suit.SPADES), new Card(Rank.FOUR, Suit.HEARTS));
+        var bonus = new CardScorer().suitedBonus(cards);
+
+        assertEquals(0, bonus);
+    }
 
 }

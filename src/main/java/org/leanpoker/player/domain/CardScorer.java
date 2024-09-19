@@ -2,6 +2,7 @@ package org.leanpoker.player.domain;
 
 import org.leanpoker.player.domain.model.Card;
 import org.leanpoker.player.domain.model.Rank;
+import org.leanpoker.player.domain.model.Suit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,5 +39,14 @@ public class CardScorer {
             return 5;
         }
         return result;
+    }
+
+    public int suitedBonus(List<Card> cards) {
+        Map<Suit, Long> numberOfCardsBySuit = cards.stream()
+                .collect(Collectors.groupingBy(Card::suit, Collectors.counting()));
+        var result = cards.stream()
+                .filter(card -> numberOfCardsBySuit.get(card.suit()) >= 2) // same suit
+                .count();
+        return result > 0 ? 2 : 0;
     }
 }

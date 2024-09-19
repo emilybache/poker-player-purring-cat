@@ -25,6 +25,9 @@ public class GameState {
     @JsonProperty("small_blind")
     private int small_blind;
 
+    @JsonProperty("big_blind")
+    private int big_blind;
+
     @JsonProperty("current_buy_in")
     private int current_buy_in;
 

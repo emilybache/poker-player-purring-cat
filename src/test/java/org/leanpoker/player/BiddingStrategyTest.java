@@ -7,6 +7,7 @@ import org.leanpoker.player.domain.model.Card;
 import org.leanpoker.player.domain.model.Rank;
 import org.leanpoker.player.domain.model.Suit;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BiddingStrategyTest {

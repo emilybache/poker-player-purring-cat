@@ -5,7 +5,6 @@ import org.leanpoker.player.domain.model.Rank;
 import org.leanpoker.player.domain.model.Suit;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,6 +23,25 @@ public class CardScorer {
     public int highestScore(List<Card> cards) {
         var highest = highest(cards);
         return highest.rank().getValue() >= 10 ? highest.rank().getValue() : 0;
+    }
+
+    public int overallScore(List<Card> cards) {
+        int resultScore = 0;
+
+        var highest = highest(cards);
+        int highestScore = highest.rank().getValue();
+        var suitedBonus = suitedBonus(cards);
+        int pairScore = pair(cards);
+        if (havePair(pairScore)) {
+            resultScore = highestScore * 2;
+        } else {
+            resultScore = highestScore;
+        }
+        return resultScore + suitedBonus;
+    }
+
+    private boolean havePair(int pairScore) {
+        return pairScore > 0;
     }
 
     public int pair(List<Card> cards) {

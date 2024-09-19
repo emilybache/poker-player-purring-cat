@@ -13,6 +13,7 @@ import org.leanpoker.player.domain.model.Suit;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlayerScorerTest {
@@ -106,6 +107,43 @@ public class PlayerScorerTest {
         var bonus = new CardScorer().suitedBonus(cards);
 
         assertEquals(0, bonus);
+    }
+
+    @Test
+    void suitedWithAceIsTwelve() {
+        var cards = List.of(new Card(Rank.ACE, Suit.HEARTS), new Card(Rank.FOUR, Suit.HEARTS));
+
+        var score = new CardScorer().overallScore(cards);
+
+        assertThat(score).isEqualTo(12);
+    }
+
+
+    @Test
+    void suitedWithKingIsTwelve() {
+        var cards = List.of(new Card(Rank.KING, Suit.HEARTS), new Card(Rank.FOUR, Suit.HEARTS));
+
+        var score = new CardScorer().overallScore(cards);
+
+        assertThat(score).isEqualTo(10);
+    }
+
+    @Test
+    void suitedWithQueenIsTwelve() {
+        var cards = List.of(new Card(Rank.QUEEN, Suit.HEARTS), new Card(Rank.FOUR, Suit.HEARTS));
+
+        var score = new CardScorer().overallScore(cards);
+
+        assertThat(score).isEqualTo(9);
+    }
+
+    @Test
+    void twoTens() {
+        var cards = List.of(new Card(Rank.TEN, Suit.SPADES), new Card(Rank.TEN, Suit.HEARTS));
+
+        var score = new CardScorer().overallScore(cards);
+
+        assertThat(score).isEqualTo(10);
     }
 
 }

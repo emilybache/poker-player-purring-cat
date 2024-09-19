@@ -13,12 +13,13 @@ public class BiddingStrategy {
         this.buyIn = buyIn;
     }
 
-    public int decideBid(Card highest, int highestCardScore, int pairScore, List<Card> cards) {
-        int highestScore = bidForHighestCard(highest);
-
-        int score = Math.max(pairScore, highestScore);
-        int bonus = scorer.suitedBonus(cards);
-        return score + bonus;
+    public int decideBid(List<Card> cards) {
+        int overallScore = scorer.overallScore(cards);
+        if (overallScore > 10) {
+            return Math.max(buyIn, 10);
+        } else {
+            return 0;
+        }
     }
 
     public int bidForHighestCard(Card highestCard) {

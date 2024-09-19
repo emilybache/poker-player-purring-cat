@@ -15,9 +15,10 @@ public class Player {
 
         int pairScore = scorer.pair(cards);
         var highest = scorer.highest(cards);
+        int highestCardScore = scorer.highestScore(cards);
 
         BiddingStrategy strategy = new BiddingStrategy(scorer, state.getCurrentBuyIn());
-        return strategy.decideBid(highest, pairScore, cards);
+        return strategy.decideBid(highest, highestCardScore, pairScore, cards);
     }
 
     public static void showdown(JsonNode game) {

@@ -27,7 +27,24 @@ public class BiddingStrategyTest {
     }
 
     @Test
-    public void raiseIfTwelveOrMore() {
+    public void decideBidZeroWhenBadCards() {
 
     }
+
+    @Test
+    public void decideBidWhenHighCardOverTen() {
+
+    }
+
+    @Test
+    public void decideBidWhenPair() {
+
+    }
+
+
+    @Test
+    public void decideBidWhenSuitsMatch() {
+
+    }
+
 }

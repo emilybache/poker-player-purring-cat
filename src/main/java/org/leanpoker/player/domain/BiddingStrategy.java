@@ -13,8 +13,9 @@ public class BiddingStrategy {
         this.buyIn = buyIn;
     }
 
-    public int decideBid(Card highest, int pairScore, List<Card> cards) {
+    public int decideBid(Card highest, int highestCardScore, int pairScore, List<Card> cards) {
         int highestScore = bidForHighestCard(highest);
+
         int score = Math.max(pairScore, highestScore);
         int bonus = scorer.suitedBonus(cards);
         return score + bonus;

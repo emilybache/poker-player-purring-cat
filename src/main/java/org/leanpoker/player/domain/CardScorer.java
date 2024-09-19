@@ -29,9 +29,14 @@ public class CardScorer {
 
         List<Card> cardsByRank = cards.stream().filter(c -> c.rank() == Rank.TWO).toList();
 
-        return cards.stream()
+        int result = cards.stream()
             .filter(card -> numberOfCardsByRank.get(card.rank()) == 2) // exactly 2 times
             .mapToInt(card -> card.rank().getValue())
-            .sum(); // Sum the values
+            .sum();
+
+        if (result < 5 && result > 0) {
+            return 5;
+        }
+        return result;
     }
 }

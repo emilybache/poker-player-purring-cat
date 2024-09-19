@@ -63,4 +63,21 @@ public class PlayerScorerTest {
 
         assertEquals(0, pairScore);
     }
+
+    @Test
+    public void pairOfTwosIsFive(){
+        var cards = List.of(new Card(Rank.TWO, Suit.HEARTS), new Card(Rank.TWO, Suit.SPADES));
+        var pairScore = new CardScorer().pair(cards);
+
+        assertEquals(5, pairScore);
+    }
+
+    @Test
+    public void pairOfThreesIsSomething(){
+        var cards = List.of(new Card(Rank.THREE, Suit.HEARTS), new Card(Rank.THREE, Suit.SPADES));
+        var pairScore = new CardScorer().pair(cards);
+
+        assertEquals(5, pairScore);
+    }
+
 }

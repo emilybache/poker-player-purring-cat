@@ -163,4 +163,10 @@ public class GameState {
         var cards = player.getCards();
         return cards.stream().map(cardData -> new Card(Rank.fromString(cardData.rank), Suit.fromString(cardData.suit))).toList();
     }
+
+    public int getOurMoney() {
+        var index = getInAction();
+        var player = getPlayers().get(index);
+        return player.getStack();
+    }
 }

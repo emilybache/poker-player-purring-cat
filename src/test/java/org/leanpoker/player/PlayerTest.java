@@ -93,6 +93,13 @@ class PlayerTest {
     }
 
     @Test
+    void getOurMoney() {
+        GameState state = new MessageParser().stateFrom(STATE);
+        assertThat(state.getOurMoney()).isEqualTo(1590);
+    }
+
+
+    @Test
     void testParseWhatAreMyCards() throws Exception{
 
         var result = new MessageParser().cardsFrom(STATE);

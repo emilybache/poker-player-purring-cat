@@ -7,7 +7,7 @@ import org.leanpoker.player.presentation.parser.GameState;
 
 public class Player {
 
-    public static final String VERSION = "v.1.4";
+    public static final String VERSION = "v.1.5";
 
     public static int betRequest(GameState state) {
         var cards = state.getCards();
@@ -16,11 +16,8 @@ public class Player {
         int pairScore = scorer.pair(cards);
         var highest = scorer.highest(cards);
 
-        BiddingStrategy strategy = new BiddingStrategy(state.getCurrentBuyIn());
-        int highestScore = strategy.bidForHighestCard(highest);
-        int score = Math.max(pairScore, highestScore);
-        int bonus = scorer.suitedBonus(cards);
-        return  score + bonus;
+        BiddingStrategy strategy = new BiddingStrategy(scorer, state.getCurrentBuyIn());
+        return strategy.decideBid(highest, pairScore, cards);
     }
 
     public static void showdown(JsonNode game) {

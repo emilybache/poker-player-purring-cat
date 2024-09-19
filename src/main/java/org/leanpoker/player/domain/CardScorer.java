@@ -31,13 +31,15 @@ public class CardScorer {
         var highest = highest(cards);
         int highestScore = highest.rank().getValue();
         var suitedBonus = suitedBonus(cards);
+        // WARNING: ASSUMING TWO CARDS ONLY
+        var gapMalus = gapMalus(cards.get(0), cards.get(1));
         int pairScore = pair(cards);
         if (havePair(pairScore)) {
             resultScore = highestScore * 2;
         } else {
             resultScore = highestScore;
         }
-        return resultScore + suitedBonus;
+        return resultScore + suitedBonus + gapMalus;
     }
 
     private boolean havePair(int pairScore) {
@@ -71,5 +73,14 @@ public class CardScorer {
                 .filter(card -> numberOfCardsBySuit.get(card.suit()) >= 2) // same suit
                 .count();
         return result > 0 ? 2 : 0;
+    }
+
+
+    public int gapMalus(Card card1, Card card2) {
+        int difference = Math.abs(card1.rank().getOrder() - card2.rank().getOrder());
+        if (difference == 0) {
+            return 0;
+        }
+        return -1* (difference -1);
     }
 }

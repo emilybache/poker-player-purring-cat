@@ -115,13 +115,13 @@ public class PlayerScorerTest {
 
         var score = new CardScorer().overallScore(cards);
 
-        assertThat(score).isEqualTo(12);
+        assertThat(score).isEqualTo(3);
     }
 
 
     @Test
     void suitedWithKingIsTwelve() {
-        var cards = List.of(new Card(Rank.KING, Suit.HEARTS), new Card(Rank.FOUR, Suit.HEARTS));
+        var cards = List.of(new Card(Rank.KING, Suit.HEARTS), new Card(Rank.QUEEN, Suit.HEARTS));
 
         var score = new CardScorer().overallScore(cards);
 
@@ -130,7 +130,7 @@ public class PlayerScorerTest {
 
     @Test
     void suitedWithQueenIsTwelve() {
-        var cards = List.of(new Card(Rank.QUEEN, Suit.HEARTS), new Card(Rank.FOUR, Suit.HEARTS));
+        var cards = List.of(new Card(Rank.QUEEN, Suit.HEARTS), new Card(Rank.JACK, Suit.HEARTS));
 
         var score = new CardScorer().overallScore(cards);
 
@@ -144,6 +144,23 @@ public class PlayerScorerTest {
         var score = new CardScorer().overallScore(cards);
 
         assertThat(score).isEqualTo(10);
+    }
+
+    @Test
+    void gapMalusForBigGap() {
+        var cards = List.of(new Card(Rank.TWO, Suit.SPADES), new Card(Rank.TEN, Suit.HEARTS));
+
+        var score = new CardScorer().gapMalus(cards.get(0), cards.get(1));
+
+        assertThat(score).isEqualTo(-7);
+    }
+    @Test
+    void gapMalusForAceAndFour() {
+        var cards = List.of(new Card(Rank.ACE, Suit.HEARTS), new Card(Rank.FOUR, Suit.HEARTS));
+
+        var score = new CardScorer().gapMalus(cards.get(0), cards.get(1));
+
+        assertThat(score).isEqualTo(-9);
     }
 
 }

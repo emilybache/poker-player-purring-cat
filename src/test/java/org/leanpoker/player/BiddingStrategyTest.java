@@ -27,25 +27,5 @@ public class BiddingStrategyTest {
         assertEquals(20, bid);
     }
 
-    @Test
-    public void decideBidZeroWhenBadCards() {
-
-    }
-
-    @Test
-    public void decideBidWhenHighCardOverTen() {
-
-    }
-
-    @Test
-    public void decideBidWhenPair() {
-
-    }
-
-
-    @Test
-    public void decideBidWhenSuitsMatch() {
-
-    }
 
 }
